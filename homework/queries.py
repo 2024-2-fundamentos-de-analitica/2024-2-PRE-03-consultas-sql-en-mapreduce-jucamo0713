@@ -3,7 +3,8 @@
 # pylint: disable=broad-exception-raised
 # pylint: disable=import-error
 
-from mapreduce import run_mapreduce_job  # type: ignore
+from .mapreduce import run_mapreduce_job
+
 
 #
 # Columns:
@@ -47,9 +48,11 @@ def mapper_query_2(sequence):
                 result.append((index, row.strip()))
     return result
 
+
 def reducer_query_2(sequence):
     """Reducer"""
     return sequence
+
 
 #
 # SELECT *
@@ -102,6 +105,7 @@ def mapper_query_5(sequence):
         result.append((row_values[2], 1))
     return result
 
+
 def reducer_query_5(sequence):
     """Reducer"""
     counter = dict()
@@ -110,6 +114,7 @@ def reducer_query_5(sequence):
             counter[key] = 0
         counter[key] += value
     return list(counter.items())
+
 
 #
 # ORQUESTADOR:
@@ -150,9 +155,8 @@ def run():
         reducer=reducer_query_5,
         input_directory="files/input",
         output_directory="files/query_5",
-    ) 
+    )
+
 
 if __name__ == "__main__":
-
     run()
-
